@@ -6,3 +6,13 @@
   `jdbc:h2:file:./database/Products`
 
 ## /api/products
+* get: get product by id
+* post: create product
+* put: update product
+* delete: delete product
+
+## api-docs
+http://localhost:8080/api-docs/
+
+## swagger
+http://localhost:8080/swagger-ui.html
