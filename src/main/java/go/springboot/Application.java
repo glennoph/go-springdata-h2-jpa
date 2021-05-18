@@ -1,7 +1,7 @@
-package go.springboot.gospringdatah2jpa;
+package go.springboot;
 
-import go.springboot.gospringdatah2jpa.entity.Product;
-import go.springboot.gospringdatah2jpa.repository.ProductRepository;
+import go.springboot.entity.Product;
+import go.springboot.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package go.springboot.gospringdatah2jpa.entity;
+package go.springboot.entity;
 
 import lombok.Data;
 import lombok.ToString;

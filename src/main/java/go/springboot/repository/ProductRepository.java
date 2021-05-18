@@ -1,6 +1,6 @@
-package go.springboot.gospringdatah2jpa.repository;
+package go.springboot.repository;
 
-import go.springboot.gospringdatah2jpa.entity.Product;
+import go.springboot.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +16,5 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     List<Product> findByNameIn(List<String> nameList);
     // find all products by name
     List<Product> findByName(String name);
+
 }

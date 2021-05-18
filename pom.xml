@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>go.springboot</groupId>
-	<artifactId>go-springdata-h2-jpa</artifactId>
+	<artifactId>go-springdata</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>go-springdata-h2-jpa</name>
 	<description>Demo project for Spring Boot</description>
