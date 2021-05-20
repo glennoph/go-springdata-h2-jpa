@@ -16,3 +16,22 @@ http://localhost:8080/api-docs/
 
 ## swagger
 http://localhost:8080/swagger-ui.html
+
+## actuator
+
+### dependencies
+```xml
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+```
+
+### actuator health
+http://localhost:8080/actuator/health
+
+* returns {"status":"UP"}
