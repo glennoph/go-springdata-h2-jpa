@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @SpringBootApplication
@@ -28,31 +29,32 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Product p1 = new Product();
-		p1.setName("testing product");
-		p1.setCategory("test");
-		p1.setDescription("this is a tesing product");
-		p1.setType("a");
-		p1.setPrice(0.0);
+		Product p1 = Product.builder()
+				.id(UUID.randomUUID().toString())
+				.name("testing product")
+				.category("test")
+				.description("this is a tesing product")
+				.type("a")
+				.price(0.0).build();
 		productRepository.save(p1);
 		log.info("Startup: save product "+ p1.toString());
 
-		Product p2 = new Product();
-		p2.setName("testing product 2");
-		p2.setCategory("test");
-		p2.setDescription("this is a tesing product");
-		p2.setType("b");
-		p2.setPrice(0.01);
+		Product p2 = Product.builder()
+				.name("testing product 2")
+				.category("test")
+				.description("this is a tesing product")
+				.type("b")
+				.price(0.01).build();
 		productRepository.save(p2);
 		log.info("Startup: save product "+ p2.toString());
 
 
-		Product p3 = new Product();
-		p3.setName("testing product 3");
-		p3.setCategory("test");
-		p3.setDescription("this is a tesing product");
-		p3.setType("b");
-		p3.setPrice(0.01);
+		Product p3 = Product.builder()
+				.name("testing product 3")
+				.category("test")
+				.description("this is a tesing product")
+				.type("b")
+				.price(0.01).build();
 		productRepository.save(p3);
 		log.info("Startup: save product "+ p3.toString());
 

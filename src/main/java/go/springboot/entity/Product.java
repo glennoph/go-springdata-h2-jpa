@@ -1,6 +1,8 @@
 package go.springboot.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
+//@NoArgsConstructor
 @ToString
+@Builder
 @Entity
 public class Product {
 

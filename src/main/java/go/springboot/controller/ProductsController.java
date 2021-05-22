@@ -5,7 +5,9 @@ import go.springboot.repository.ProductRepository;
 import go.springboot.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,11 +27,11 @@ public class ProductsController {
 
     // get product
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
-    public Product getProduct(@PathVariable(name="id") String id) {
+    public ResponseEntity<Product> getProduct(@PathVariable(name="id") String id) {
         log.info("id="+id);
         // find product by id, return null if not found
         Product product = productService.getProduct(id);
-        return product;
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     // save product
