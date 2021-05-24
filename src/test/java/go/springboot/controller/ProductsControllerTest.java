@@ -21,6 +21,8 @@ import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -119,10 +121,18 @@ class ProductsControllerTest {
     }
 
     @Test
+    @Disabled("todo")
     void updateProduct() {
     }
 
     @Test
-    void deleteProduct() {
+    void deleteProduct() throws Exception {
+        //given(productService.delete(any())).willReturn void
+        mockMvc.perform(delete(API_PRODUCTS+randomid))
+                .andExpect(status().isNoContent());
+        // verify that productService.delete() was called with any argument
+        verify(productService, times(1)).delete(any());
+        // verify that productService.delete() was called with id randomid
+        verify(productService, times(1)).delete(randomid);
     }
 }
