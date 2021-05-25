@@ -78,6 +78,12 @@
 			<artifactId>spring-web</artifactId>
 			<version>5.2.14.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.29.0</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 

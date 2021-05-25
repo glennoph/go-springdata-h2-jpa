@@ -1,8 +1,12 @@
 package go.springboot.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import go.springboot.entity.Product;
 import go.springboot.service.ProductService;
+import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -11,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -45,6 +50,8 @@ class ProductsControllerTest {
 
     MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
 
     Product testProduct;
     Product addedProduct;
@@ -73,11 +80,11 @@ class ProductsControllerTest {
 
     }
 
-    @AfterEach
-    void tearDown() {
-        System.out.println("tearDown todo");
-        //reset(productService);
-    }
+//    @AfterEach
+//    void tearDown() {
+//        System.out.println("tearDown todo");
+//        //reset(productService);
+//    }
 
 
 
@@ -97,27 +104,38 @@ class ProductsControllerTest {
     }
 
     @Test
-    @Disabled("fail")
     void saveProduct() throws Exception {
-        //NB test failed because product was not added
+        // create updated product
         Product updatedProduct = Product.builder()
                 .id(randomid)
                 .name("updated-product")
                 .type("test-save").category("testing")
+                .description("test-desc").price(99.99)
                 .build();
 
         given(productService.save(any()))
         .willReturn(updatedProduct);
 
-        String updatedProductString = new ObjectMapper().writeValueAsString(updatedProduct);
-        System.out.println("updatedProductString="+updatedProductString);
+        System.out.println("updatedProduct="+toJson(updatedProduct));
+
         mockMvc.perform(post(API_PRODUCTS)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(updatedProductString))
+                .characterEncoding("utf-8")
+                .content(toJson(updatedProduct)))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 ;
 
+    }
+
+    String toJson(Product product)  {
+        return "{\"id\": \""+product.getId()+"\", " +
+                "\"name\": \""+product.getName()+"\", "+
+                "\"type\": \""+product.getType()+"\", "+
+                "\"category\": \""+product.getCategory()+"\", "+
+                "\"description\": \""+product.getDescription()+"\", "+
+                "\"price\": "+product.getPrice()+
+                "}";
     }
 
     @Test

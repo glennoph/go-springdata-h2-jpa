@@ -1,22 +1,26 @@
 package go.springboot.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.extern.jackson.Jacksonized;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
-@Data
-//@NoArgsConstructor
+//@Data
+@Getter
+@Setter
+@Jacksonized
+@NoArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
 @Entity
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
@@ -27,5 +31,6 @@ public class Product {
     private String category;
     private String description;
     private Double price;
+
 
 }
